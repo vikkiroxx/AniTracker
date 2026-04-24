@@ -6,7 +6,10 @@ import dynamic from "next/dynamic";
 import { format, subDays } from "date-fns";
 
 const ActivityCalendar = dynamic(
-  () => import("react-activity-calendar").then((mod: any) => mod.ActivityCalendar || mod.default || mod),
+  () => import("react-activity-calendar").then((mod: any) => {
+    const Comp = mod.ActivityCalendar || mod.default || mod;
+    return (props: any) => <Comp {...props} />;
+  }),
   { ssr: false, loading: () => <div className="h-[150px] animate-pulse bg-white/5 rounded-xl w-full" /> }
 );
 
@@ -81,7 +84,6 @@ export function ActivityHeatmap({ userId }: { userId: number }) {
   return (
     <div className="w-full overflow-x-auto scrollbar-hide py-2">
       <div className="min-w-[600px]">
-        {/* @ts-ignore */}
         <ActivityCalendar 
           data={calendarData} 
           theme={explicitTheme}
