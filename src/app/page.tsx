@@ -29,10 +29,17 @@ export default function Home() {
         </p>
 
         <div className="flex gap-4">
-          <a href="/api/auth/login" className="flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium transition-all shadow-[0_0_40px_-10px_rgba(200,50,255,0.5)] hover:scale-105 active:scale-95">
+          <button 
+            onClick={() => {
+              const clientId = process.env.NEXT_PUBLIC_ANILIST_CLIENT_ID;
+              const redirectUri = process.env.NEXT_PUBLIC_ANILIST_REDIRECT_URI;
+              window.location.href = `https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
+            }}
+            className="flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium transition-all shadow-[0_0_40px_-10px_rgba(200,50,255,0.5)] hover:scale-105 active:scale-95"
+          >
             <Play className="w-5 h-5 fill-current" />
             Get Started
-          </a>
+          </button>
           <button className="flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-foreground border border-white/10 rounded-full font-medium transition-all backdrop-blur-sm hover:scale-105 active:scale-95">
             Explore
           </button>

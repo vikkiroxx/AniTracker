@@ -16,6 +16,8 @@ const serwist = new Serwist({
   clientsClaim: true,
   navigationPreload: true,
   runtimeCaching: defaultCache,
+  navigateFallback: "/",
+  navigateFallbackDenylist: [/^\/api\//],
 });
 
 serwist.addEventListeners();
