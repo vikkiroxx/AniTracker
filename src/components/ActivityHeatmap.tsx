@@ -81,6 +81,7 @@ export function ActivityHeatmap({ userId }: { userId: number }) {
   return (
     <div className="w-full overflow-x-auto scrollbar-hide py-2">
       <div className="min-w-[600px]">
+        {/* @ts-ignore */}
         <ActivityCalendar 
           data={calendarData} 
           theme={explicitTheme}
